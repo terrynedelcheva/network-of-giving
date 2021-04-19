@@ -1,0 +1,45 @@
+<div class="login-wrapper">
+  <form class="login">
+    <section class="title">
+      <h3 class="welcome">Welcome to</h3>
+      Network for Giving
+      <h5 class="hint">Sign In</h5>
+    </section>
+    <div class="login-group">
+      <form clrForm>
+        <clr-input-container>
+          <label>Username:</label>
+          <input type="username" clrInput [(ngModel)]="username" name="name" required />
+          <clr-control-helper></clr-control-helper>
+          <clr-control-error>This field is required!</clr-control-error>
+        </clr-input-container>
+        <!--<clr-input-container>
+          <label>Password:</label>
+          <input type="password" clrInput [(ngModel)]="password" name="name" required />
+          <clr-control-helper></clr-control-helper>
+          <clr-control-error>This field is required!</clr-control-error>
+        </clr-input-container>-->
+        <clr-password-container>
+          <label>Password:</label>
+          <input clrPassword [(ngModel)]="password" name="password" required minlength="8" />
+          <clr-control-helper>Password must be at least 8 characters!</clr-control-helper>
+          <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
+        </clr-password-container>
+      </form>
+      <!--<div class="error active">
+        Invalid user name or password
+      </div>-->
+      <div class="alert alert-danger" role="alert" *ngIf="!isLoggedIn">
+        <div class="alert-items">
+          <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+              <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="alert-text">You have entered your username or password incorrectly!</span>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="loginUser()">SIGN IN</button>
+    </div>
+  </form>
+</div>

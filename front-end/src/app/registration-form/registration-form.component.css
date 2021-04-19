@@ -1,0 +1,11 @@
+.clr-radio-wrapper .clr-control-label {
+  font-weight: 400;
+  display: inline-block;
+}
+
+.login-wrapper {
+  background-image: url(../donateToPeople.jpg);
+  background-repeat: no-repeat;
+  background-size: 1050px 800px;
+  background-position: right center;
+}

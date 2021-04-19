@@ -1,0 +1,58 @@
+<!--<p>logged-user-header works!</p>-->
+<header class="header-4">
+  <div class="branding">
+    <a href="..." class="nav-link">
+      <span class="clr-icon clarity-logo"></span>
+      <span class="title">Network of Giving</span>
+    </a>
+  </div>
+  <div class="header-actions" *ngIf="!isUserLoggedIn; else userIsNotLogged">
+    <!--<clr-dropdown>
+      <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
+        <clr-icon shape="user"></clr-icon>
+        Sign In
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a href="/login" clrDropdownItem>Sign In</a>
+        <a href="/registration" clrDropdownItem>Create an account</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>-->
+    <div class="header-actions">
+      <a href="/login" class="nav-link nav-text">
+        Sign In
+      </a>
+      <a href="/registration" class="nav-link nav-text">
+        Register
+      </a>
+    </div>
+  </div>
+  <ng-template #userIsNotLogged>
+    <div class="header-nav">
+      <a href="/create-charity" class="active nav-link"><span class="nav-text">Create Charity</span></a>
+    </div>
+    <div class="header-actions">
+      <clr-dropdown>
+        <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
+          <clr-icon shape="user"></clr-icon>
+          {{getUsername()}}
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+          <!--<a (click)="loggedOut" href="/charities" clrDropdownItem>Logout</a>-->
+          <a (click)="isModalVisible = true" style="color:#13599f" clrDropdownItem>LOG OUT</a>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+  </ng-template>
+</header>
+<clr-modal [(clrModalOpen)]="isModalVisible">
+  <h3 class="modal-title">I have a nice title</h3>
+  <div class="modal-body">
+    <p>Are you sure you want to log out?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="isModalVisible = false">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="loggedOut; isModalVisible = false">Yes</button>
+  </div>
+</clr-modal>

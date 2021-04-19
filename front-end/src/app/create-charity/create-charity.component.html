@@ -1,0 +1,53 @@
+<!--<p>create-charity works!</p>-->
+<div class="starting">
+<form clrForm>
+  <h1>Create Charity</h1>
+  <span class="clr-sr-only">Tabbing through form inputs will trigger validation messages to be read aloud.</span>
+  <clr-input-container>
+    <label style="font-size:16px">Charity title</label>
+    <input clrInput type="text" [(ngModel)]="title" name="title" size="45" required />
+    <clr-control-error>We need your title for legal compliance</clr-control-error>
+  </clr-input-container>
+  <clr-input-container>
+    <label style="font-size:16px">Upload image</label>
+    <input clrInput type="file" [(ngModel)]="image" name="image" (change)="selectFile($event)" #charityFile required />
+    <clr-control-error>We need your title for legal compliance</clr-control-error>
+  </clr-input-container>
+  <button id="upload" class="btn btn-success" (click)="upload()">Upload</button>
+  <div *ngIf="currentFileUpload" class="progress">
+    <!--<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+         attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+         [ngStyle]="{width:progress.percentage+'%'}">
+      {{progress.percentage}}%</div>-->
+  </div>
+  <clr-textarea-container>
+    <label style="font-size:16px">Description</label>
+    <textarea clrTextarea [(ngModel)]="description" placeholder="Make a brief description of your charity!" name="description" rows="6" required></textarea>
+    <clr-control-helper></clr-control-helper>
+    <clr-control-error>We need your description for legal compliance</clr-control-error>
+  </clr-textarea-container>
+  <clr-input-container>
+    <label style="font-size:16px">Donation required (Optional)</label>
+    <input clrInput type="number" [(ngModel)]="donationRequired" name="donation" min="1" max="3000000000" size="50" />
+    <clr-control-helper>If your charity needs donation please input its value!</clr-control-helper>
+  </clr-input-container>
+  <clr-input-container>
+    <label style="font-size:16px">Volunteers required (Optional)</label>
+    <input clrInput type="number" [(ngModel)]="volunteersRequired" name="volunteers" min="1" max="100000" size="50" />
+    <clr-control-helper>If your charity needs volunteers please input its value!</clr-control-helper>
+  </clr-input-container>
+  <div class="alert alert-success" role="alert" *ngIf="isCharityCreated">
+    <div class="alert-items">
+      <div class="alert-item static">
+        <div class="alert-icon-wrapper">
+          <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+        </div>
+        <span class="alert-text">You have created charity successfully!</span>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit" (click)="createCharity()">Submit</button>
+</form>
+<img src="../../assets/images/54485.png" />
+</div>
+

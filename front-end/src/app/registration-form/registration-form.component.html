@@ -1,0 +1,80 @@
+<div class="login-wrapper">
+  <form class="login">
+    <section class="title">
+      <h3 class="welcome">Welcome to</h3>
+      Network for Giving
+      <h5 class="hint">Create an account</h5>
+    </section>
+    <div class="login-group">
+      <form clrForm>
+        <clr-input-container>
+          <label>Username:</label>
+          <input type="username" clrInput [(ngModel)]="username" name="name" required/>
+          <clr-control-helper></clr-control-helper>
+          <clr-control-error>This field is required!</clr-control-error>
+        </clr-input-container>
+        <clr-password-container>
+          <label>Password:</label>
+          <input clrPassword [(ngModel)]="password" name="password" required minlength="8" />
+          <clr-control-helper>Password must be at least 8 characters!</clr-control-helper>
+          <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
+          <clr-control-error *clrIfError="'minlength'">It must be at least 8 characters!</clr-control-error>
+        </clr-password-container>
+        <clr-input-container>
+          <label>First name:</label>
+          <input type="text" clrInput [(ngModel)]="firstName" name="name" required/>
+          <clr-control-helper></clr-control-helper>
+          <clr-control-error>This field is required!</clr-control-error>
+        </clr-input-container>
+        <clr-input-container>
+          <label>Last name:</label>
+          <input type="text" clrInput [(ngModel)]="lastName" name="name" required/>
+          <clr-control-helper></clr-control-helper>
+          <clr-control-error>This field is required!</clr-control-error>
+        </clr-input-container>
+        <clr-select-container>
+          <label>Age:</label>
+          <select clrSelect name="options" [(ngModel)]="age" required>
+            <option *ngFor="let i of manageAge(90, 18)">{{i}}</option>
+          </select>
+          <clr-control-helper>You can register only if you are 18 years old or older!</clr-control-helper>
+          <clr-control-error>This field is required!</clr-control-error>
+        </clr-select-container>
+        <clr-radio-container clrInline>
+          <label>Gender:</label>
+          <clr-radio-wrapper>
+            <input type="radio" clrRadio name="gender" required value="option1" [(ngModel)]="gender"/>
+            <label>Male</label>
+          </clr-radio-wrapper>
+          <clr-radio-wrapper>
+            <input type="radio" clrRadio name="gender" required value="option2" [(ngModel)]="gender"/>
+            <label>Female</label>
+          </clr-radio-wrapper>
+          <clr-radio-wrapper>
+            <input type="radio" clrRadio name="gender" required value="option3" [(ngModel)]="gender"/>
+            <label>Other</label>
+          </clr-radio-wrapper>
+          <clr-control-helper></clr-control-helper>
+          <clr-control-error>This field is required!</clr-control-error>
+        </clr-radio-container>
+        <clr-input-container>
+          <label>Location:</label>
+          <input type="text" clrInput [(ngModel)]="location" name="name" required/>
+          <clr-control-helper></clr-control-helper>
+          <clr-control-error>This field is required!</clr-control-error>
+        </clr-input-container>
+      </form>
+      <div class="alert alert-success" role="alert" *ngIf="isRegistered">
+        <div class="alert-items">
+          <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+              <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+            </div>
+            <span class="alert-text">You have registered successfully!</span>
+          </div>
+        </div>
+      </div>
+      <button type="submit" (click)="createUser()" class="btn btn-primary">CREATE ACCOUNT</button>
+    </div>
+  </form>
+</div>

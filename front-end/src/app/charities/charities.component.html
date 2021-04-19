@@ -1,0 +1,40 @@
+<h3 style="color: #13599f">The highest use of capital is not to make more money but to make money do more for the
+  betterment of life. - Henry Ford</h3>
+<label for="search_input">
+  <clr-icon shape="search"></clr-icon>
+  <input class="clr-form-control" id="search_input" type="text" [(ngModel)]="searchText" autocomplete="off"
+         placeholder="Search charity by title...">
+</label>
+<div class="clr-row">
+  <div class="card my-card" *ngFor="let charity of charities | filter:searchText">
+    <div class="card-header">
+      {{charity.title}}
+    </div>
+    <div class="card-block">
+      <div class="card-media-block wrap">
+        <!--<img src="{{charity.image}}" class="card-media-image">-->
+        <div class="card-img">
+          <img src="{{charity.image}}"/>
+        </div>
+        <div class="card-media-description">
+          <span class="card-media-title">Required donations: {{charity.donationRequired}}$</span>
+          <span class="card-media-text">Volunteers required: {{charity.volunteersRequired}}</span>
+        </div>
+      </div>
+      <div class="card-text">
+        {{charity.description}}
+      </div>
+    </div>
+    <div class="card-footer" *ngIf="isUserLoggedIn; else userIsNotLogged">
+      <!--<a routerLink="/charity-details/{{charity.id}}">-->
+      <button (click)="navigateToCharityDetails(charity.id)" class="btn btn-success">Details</button><!--</a>-->
+      <!--<button (click)="deleteCharity(charity.id);" class="btn btn-danger">Delete</button>-->
+    </div>
+    <ng-template #userIsNotLogged>
+      <div class="card-footer">
+        <!--<a routerLink="/charity-details/{{charity.id}}">-->
+        <button (click)="navigateToCharityDetails(charity.id)" class="btn btn-success">Details</button><!--</a>-->
+      </div>
+    </ng-template>
+  </div>
+</div>

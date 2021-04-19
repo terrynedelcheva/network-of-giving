@@ -1,0 +1,33 @@
+.card {
+  width: 35%;
+  height: 35%
+}
+
+img {
+  height: 35%;
+}
+
+.buttons {
+  display: inline-block;
+}
+
+.card {
+  margin-left: 30px;
+}
+
+#make-donation {
+  display: flex;
+}
+
+table {
+  margin-left: 20px;
+  width: 45%;
+}
+
+#donations, #volunteers, #donations2 {
+  width: 25%;
+}
+
+/*#button1, #button2 {
+  width: 20%;
+}*/

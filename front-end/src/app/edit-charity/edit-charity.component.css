@@ -1,0 +1,29 @@
+input[type="number"] {
+  width: 100px;
+}
+
+.clr-input[type="file"] {
+  border-bottom: .00rem solid;
+  border-bottom-width: 0.00rem;
+}
+
+button {
+  margin-top: 20px;
+  margin-left: 60%;
+}
+
+h1 {
+  margin-left: 150px;
+}
+
+div.starting {
+  display: flex;
+}
+
+form {
+  width: 65%;
+}
+
+img {
+  width: 65%;
+}

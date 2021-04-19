@@ -1,0 +1,43 @@
+.card {
+  width: 25%;
+}
+
+.my-card {
+  margin-left: 100px;
+}
+
+/*img {
+  object-fit: fill;
+}*/
+
+h2, h3 {
+  text-align: center;
+}
+
+.my-card {
+  display: grid;
+  grid-gap: 10px;
+
+}
+
+img {
+  max-height: 150px;
+  margin: 0 auto;
+}
+
+#search_input {
+  border-width: thin;
+  border-color: #13599f;
+}
+
+input {
+  display: inline-block;
+  width: 98%;
+  border-style: none;
+  border: 0px;
+  outline: none;
+}
+
+clr-icon {
+  color: #13599f;
+}

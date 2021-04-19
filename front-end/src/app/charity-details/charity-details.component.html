@@ -1,0 +1,110 @@
+<div id="make-donation">
+  <div class="card">
+    <div style="color: rgb(36,109,159)" class="card-header">
+      <b>{{charity.title}}</b>
+    </div>
+    <div class="card-img">
+      <!--<img src="../../assets/images/54485.png">-->
+      <img src="{{charity.image}}">
+    </div>
+    <div class="card-block">
+      <p class="card-text">
+        {{charity.description}}
+      </p>
+    </div>
+  </div>
+
+  <table class="table table-vertical table-noborder table-compact" *ngIf="isUserLoggedIn; else isNotLoggedIn">
+    <tbody>
+    <tr>
+      <th id="donations">collected donations / required donations</th>
+      <td>{{donationCollected}}$ /{{donationRequired}}$</td>
+      <td id="button1">
+        <button (click)="isDonationModalVisible = true" class="btn btn-success">DONATE</button>
+      </td>
+    </tr>
+    <tr>
+      <th id="volunteers">volunteers / required volunteers</th>
+      <td>{{volunteersCollected}}/{{volunteersRequired}}</td>
+      <td id="button2">
+        <button (click)="isVolunteerModalVisible = true" class="btn btn-primary">VOLUNTEER</button>
+      </td>
+    </tr>
+    <tr>
+      <button (click)="isDeleteModalVisible = true" class="btn btn-danger">DELETE</button>
+      <button style="background-color: orange; border-color: orange" routerLink="/edit-charity/{{charity.id}}" class="btn btn-warning">Edit Charity</button>
+    </tr>
+    </tbody>
+  </table>
+
+  <ng-template #isNotLoggedIn>
+  <table class="table table-vertical table-noborder table-compact" >
+    <tbody>
+    <tr>
+      <th id="donations2">collected donations / required donations</th>
+      <td>{{donationCollected}}$ /{{donationRequired}}$</td>
+      <td>
+        <!--<button (click)="isDonationModalVisible = true" class="btn btn-success">DONATE</button>-->
+      </td>
+    </tr>
+    <tr>
+      <th>volunteers / required volunteers</th>
+      <td>{{volunteersCollected}}/{{volunteersRequired}}</td>
+      <td>
+        <!--<button (click)="isVolunteerModalVisible = true" class="btn btn-primary">VOLUNTEER</button>-->
+      </td>
+    </tr>
+    <tr>
+      <!--<button (click)="isDeleteModalVisible = true" class="btn btn-danger">DELETE</button>
+      <button routerLink="/edit-charity/{{charity.id}}" class="btn btn-outline">Edit Charity</button>-->
+    </tr>
+    </tbody>
+  </table>
+  </ng-template>
+</div>
+<clr-modal [(clrModalOpen)]="isVolunteerModalVisible">
+  <h3 class="modal-title">Volunteer</h3>
+  <div class="modal-body">
+    <p>Do you want to become a volunteer? If your answer is yes, please click the button and you will receive more information on your email!</p>
+    <!--<input clrInput type="number" placeholder="Volunteer" name="input" [(ngModel)]="volunteersCollected" [max]="3000000" [min]="1" />-->
+  </div>
+  <div class="modal-footer">
+    <button type="button" (click)="editCharityVolunteers()" class="btn btn-primary">VOLUNTEER</button>
+  </div>
+</clr-modal>
+<clr-modal [(clrModalOpen)]="isDonationModalVisible">
+  <h3 class="modal-title">Make a donation</h3>
+  <div class="modal-body">
+    <div class="alert alert-warning alert-sm" role="alert" *ngIf="isDonationCollected()">
+      <div class="alert-items">
+        <div class="alert-item static">
+          <div class="alert-icon-wrapper">
+            <clr-icon class="alert-icon" shape="exclamation-triangle"></clr-icon>
+          </div>
+          <div class="alert-text">
+            The necessary funds for this charity have already been raised. You can choose another charity to donate to!
+          </div>
+        </div>
+      </div>
+      <!--<button type="button" class="close" aria-label="Close">
+        <clr-icon aria-hidden="true" shape="close"></clr-icon>
+      </button>-->
+    </div>
+    <input clrInput type="number" placeholder="Donate" name="input" [(ngModel)]="donationCollected" [max]="3000000" [min]="5" />
+  </div>
+  <div class="modal-footer" *ngIf="!isDonationCollected(); else isClosed">
+    <button type="button" (click)="editCharityDonation()" class="btn btn-primary">DONATE</button>
+  </div>
+  <ng-template #isClosed>
+    <p></p>
+  </ng-template>
+</clr-modal>
+<clr-modal [(clrModalOpen)]="isDeleteModalVisible">
+  <h3 class="modal-title">Delete Charity</h3>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this charity? If you delete it, all information about it will disappear!</p>
+  </div>
+  <div class="modal-footer">
+    <button routerLink="/charities" (click)="deleteCharity(charity.id)" type="button" class="btn btn-danger">DELETE</button>
+  </div>
+</clr-modal>
